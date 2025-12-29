@@ -46,14 +46,19 @@ def normalize_bands(bands: np.ndarray) -> np.ndarray:
     normalized_bands = (bands - min_vals) / (max_vals - min_vals)
     return normalized_bands
 
-def preprocess_bands(bands: np.ndarray) -> np.ndarray:
+def preprocess_bands(bands: np.ndarray, *args, **kwargs) -> np.ndarray:
     """
     Preprocesses the imagery bands by scaling and normalizing them.
+
+    Args:
+    - bands: numpy array of imagery bands.
+    - *args: Positional arguments for scale_imagery_bands.
+    - **kwargs: Keyword arguments for scale_imagery_bands.
 
     Returns:
     - numpy array with preprocessed bands (scaled and normalized).
     """
-    scaled_bands = scale_imagery_bands(bands, 2, 10000)
+    scaled_bands = scale_imagery_bands(bands, *args, **kwargs)
     normalized_bands = normalize_bands(scaled_bands)
     return normalized_bands
 

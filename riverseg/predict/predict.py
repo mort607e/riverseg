@@ -22,17 +22,20 @@ def loadmodel(weight_path: str, device: str = "cpu", in_channels: int = 10, out_
     model.eval()
     return model
 
-def predict_river_extent(preprocessed_bands:np.ndarray, model: Module) -> np.ndarray:
+def predict_river_extent(preprocessed_bands: np.ndarray, model: Module) -> np.ndarray:
     """
     Predicts the river extent from the preprocessed bands using the provided model.
 
     Returns:
     - numpy array with predicted river extent.
-    """ 
-    input_tensor = torch.from_numpy(preprocessed_bands).unsqueeze(0).float()
+    """
+    device = next(model.parameters()).device
+    input_tensor = torch.from_numpy(preprocessed_bands).unsqueeze(0).float().to(device)
+
     with torch.no_grad():
         output = model(input_tensor)
-    predicted_mask = output.squeeze(0).cpu().numpy()
+    sigmoided_output = torch.sigmoid(output)
+    predicted_mask = sigmoided_output.squeeze(0).cpu().numpy()
     return predicted_mask
 
 if __name__ == "__main__":
