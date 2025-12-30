@@ -104,7 +104,7 @@ For Connectivity and topology-based evaluation, Number of connected components (
 ## Note
 - Trained using pseudo-labels derived from spectral indices (not manual annotations)
 - Performance varies across environments (e.g. ice, wetlands, cloud cover)
-
+- The training code is NOT included in this repository. If interested, please reach out.
 ---
 
 ## Related Work
