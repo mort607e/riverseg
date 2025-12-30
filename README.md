@@ -64,6 +64,22 @@ This will generate:
 
 ---
 
+## Data
+The segmantation model only takes 9 spectral bands as input. These bands are:
+
+| Channel | Band | Description                     | Resolution |
+|--------:|------|---------------------------------|------------|
+| 0 | VV  | Sentinel-1 Vertical-Vertical     | 10 m |
+| 1 | VH  | Sentinel-1 Vertical-Horizontal  | 10 m |
+| 2 | B2  | Blue                             | 10 m |
+| 3 | B3  | Green                            | 10 m |
+| 4 | B4  | Red                              | 10 m |
+| 5 | B6  | Vegetation Red Edge              | 20 m |
+| 6 | B7  | Vegetation Red Edge              | 20 m |
+| 7 | B8  | Near Infrared (NIR)              | 10 m |
+| 8 | B11 | Short-Wave Infrared (SWIR-1)     | 20 m |
+
+---
 ## Model
 The segmentation model is based on a **U-Net–style architecture**, trained on satellite imagery with **pseudo-labels derived from spectral water indices**.
 
