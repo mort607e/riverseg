@@ -62,6 +62,25 @@ def preprocess_bands(bands: np.ndarray, *args, **kwargs) -> np.ndarray:
     normalized_bands = normalize_bands(scaled_bands)
     return normalized_bands
 
+def select_bands(bands: np.ndarray, include_indices: list = None, exclude_indices: list = None) -> np.ndarray:
+    """
+    Selects specific bands from a 3D NumPy array based on include or exclude indices.
+
+    Args:
+    - bands: 3D NumPy array of shape (num_bands, height, width).
+    - include_indices: List of band indices to include. If provided, only these bands will be selected.
+    - exclude_indices: List of band indices to exclude. If provided, these bands will be removed.
+
+    Returns:
+    - A 3D NumPy array with the selected bands.
+    """
+    if include_indices is not None:
+        return bands[include_indices, :, :]
+    elif exclude_indices is not None:
+        return np.delete(bands, exclude_indices, axis=0)
+    else:
+        return bands
+
 
 
 
