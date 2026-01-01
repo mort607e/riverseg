@@ -171,3 +171,5 @@ m
 
 
 notetoself
+*.tif
+*.tif.aux.xml

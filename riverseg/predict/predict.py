@@ -1,7 +1,12 @@
 import torch
 import numpy as np
 from torch.nn import Module
-from riverseg.models.unet import UNet
+
+import os
+import sys
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(parent_dir)
+from models.unet import UNet
 
 
 def loadmodel(weight_path: str, device: str = "cpu", in_channels: int = 10, out_channels: int = 1) -> Module:

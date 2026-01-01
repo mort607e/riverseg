@@ -43,7 +43,8 @@ def normalize_bands(bands: np.ndarray) -> np.ndarray:
     """
     min_vals = bands.min(axis=(1, 2), keepdims=True)
     max_vals = bands.max(axis=(1, 2), keepdims=True)
-    normalized_bands = (bands - min_vals) / (max_vals - min_vals)
+    epsilon = 1e-8
+    normalized_bands = (bands - min_vals) / ((max_vals - min_vals) + epsilon)
     return normalized_bands
 
 def preprocess_bands(bands: np.ndarray, *args, **kwargs) -> np.ndarray:
