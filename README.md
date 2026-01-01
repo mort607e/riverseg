@@ -19,9 +19,8 @@ While this repository focuses on mask prediction, the design choices (loss funct
 ## Features
 - Satellite image preprocessing (band selection, normalization, tiling)
 - Deep learning–based river segmentation (U-Net–style architecture)
-- Inference on image patches or tiles
-- Output of binary river masks (GeoTIFF / PNG)
-- Simple segmentation metrics (IoU, Dice)
+- Inference on image patches
+- Output of binary river masks (GeoTIFF)
 
 ---
 
@@ -38,30 +37,14 @@ cd riverseg
 pip install -r requirements.txt
 ```
 
+### 3. Download pretrained model weights
 
-### 3. Run preprocessing on sample data
-```bash
-python scripts/preprocess_sample.py
-```
-
-### 4. Run inference
-```bash
-python scripts/predict_sample.py
-```
-
-This will generate:
-- A binary river mask
-- A visualization overlay in the `outputs/` directory
+### 4. Go through the example notebook
 
 ---
 
 ## Example Output
-*(Add images here once available)*
-
-- Input satellite patch  
-- Predicted river mask  
-- Mask overlay on input image  
-
+![Example Output](images/example_prediction.png)
 ---
 
 ## Data
@@ -85,19 +68,11 @@ The segmentation model is based on a **U-Net–style architecture**, trained on 
 
 - **Input:** preprocessed satellite image patches  
 - **Output:** binary river mask  
-- **Loss functions:** Dice / BCE (see `TRAINING.md`)
+- **Loss functions:** Dice and clDice (see `TRAINING.md`)
 
-Pretrained weights are provided in the `weights/` directory (or via a download script).
+Pretrained weights are provided via a download script.
+[https://drive.google.com/file/d/1gY2lPNDcrQGu5-Hqzlb54rHnCugfm_U2/view?usp=sharing](https://drive.google.com/file/d/1gY2lPNDcrQGu5-Hqzlb54rHnCugfm_U2/view?usp=sharing)
 
----
-
-## Evaluation
-Basic segmentation performance is reported using:
-- Intersection over Union (IoU)
-- Dice coefficient
-- Precision and Recall
-
-For Connectivity and topology-based evaluation, Number of connected components (NCC) are used as a simple proxy metric.
 
 ---
 
